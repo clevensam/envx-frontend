@@ -5,44 +5,44 @@ import Button from '@/components/ui/Button'
 const pains = [
   {
     icon: Terminal,
-    title: '.env files everywhere',
-    desc: 'Secrets scattered across repos, Slack messages, and sticky notes. No single source of truth — just chaos.',
+    title: "Where's the right file?",
+    desc: 'Your database password is probably in a Slack message, a GitHub repo, and a sticky note on someone\'s desk. You don\'t know which one is up to date.',
   },
   {
     icon: Eye,
-    title: 'No audit trail',
-    desc: 'A secret changes and production breaks. Who changed it? When? No way to know — no traceability.',
+    title: 'Who changed this?',
+    desc: 'Something breaks and you have no idea who changed that password last. Or when. Or why.',
   },
   {
     icon: Users,
-    title: 'Manual onboarding',
-    desc: 'Every new teammate means hunting down and sharing secrets one-by-one. Tedious, error-prone, insecure.',
+    title: 'Let me send you the password',
+    desc: 'Every new person on your team means DMing them secrets one by one. It\'s slow, messy, and easy to mess up.',
   },
 ]
 
 const solutions = [
   {
     icon: Shield,
-    title: 'Centralized vault',
-    desc: 'AES-256-GCM encrypted storage with a Git-style CLI. One `envx pull` and your .env is always in sync.',
+    title: 'Everything in one place',
+    desc: 'All your secrets live in a safe, central vault. Run `envx pull` and you get the same values as everyone else. No more "it works on my machine."',
   },
   {
     icon: Eye,
-    title: 'Full audit log',
-    desc: 'Every create, update, and delete is logged with who did it, what changed, and when — no more guesswork.',
+    title: 'Know what happened',
+    desc: 'Every time someone adds, changes, or deletes a secret, EnvX keeps a log. You can always see who did what.',
   },
   {
     icon: Users,
-    title: 'Team roles',
-    desc: 'Invite teammates as admins or members. Granular access control so the right people have the right access.',
+    title: "You're in control",
+    desc: 'Invite teammates as "admin" or "member." Give people access to what they need — nothing more.',
   },
 ]
 
 const features = [
-  { icon: Shield, label: 'AES-256-GCM encryption' },
-  { icon: Terminal, label: 'CLI-first workflow' },
-  { icon: Users, label: 'Team collaboration' },
-  { icon: Eye, label: 'Audit trail' },
+  { icon: Shield, label: 'Encrypted by default' },
+  { icon: Terminal, label: 'One command sync' },
+  { icon: Users, label: 'Team-ready' },
+  { icon: Eye, label: 'Full history' },
 ]
 
 export default function Landing() {
@@ -82,14 +82,14 @@ export default function Landing() {
         <div className="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-32 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-border-default bg-canvas-subtle px-4 py-1.5 text-sm text-text-secondary mb-8">
             <Key size={14} className="text-accent" />
-            Open source secret management
+            Stop sending passwords over chat
           </div>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-text-primary max-w-3xl mx-auto leading-tight">
-            Stop managing secrets in <span className="text-accent">.env files</span>
+            Stop sharing passwords the <span className="text-accent">hard way</span>
           </h1>
           <p className="mt-6 text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
-            EnvX centralizes your API keys, database credentials, and configuration —
-            encrypted at rest, accessible via CLI, and auditable by your team.
+            EnvX keeps your API keys, database URLs, and login info in one safe place.
+            One command syncs them to your team — no more copying and pasting.
           </p>
           <div className="mt-10 flex items-center justify-center gap-4">
             <Button variant="primary" size="lg" onClick={() => navigate('/register')}>
@@ -105,9 +105,9 @@ export default function Landing() {
       {/* PAIN POINTS */}
       <section className="border-b border-border-default">
         <div className="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-24">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-text-primary mb-3">The problem</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-text-primary mb-3">The old way is painful</h2>
           <p className="text-text-secondary text-center mb-12 max-w-xl mx-auto">
-            Managing secrets without a dedicated tool is painful — and risky.
+            If any of this sounds familiar, you're not alone.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
             {pains.map((p) => (
@@ -126,9 +126,9 @@ export default function Landing() {
       {/* SOLUTION */}
       <section className="border-b border-border-default">
         <div className="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-24">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-text-primary mb-3">How EnvX solves it</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-text-primary mb-3">EnvX makes it simple</h2>
           <p className="text-text-secondary text-center mb-12 max-w-xl mx-auto">
-            A simple, secure workflow for your entire team.
+            No more hunting for passwords. No more guessing who changed what.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
             {solutions.map((s) => (
@@ -147,9 +147,9 @@ export default function Landing() {
       {/* CLI DOCUMENTATION */}
       <section id="docs" className="border-b border-border-default">
         <div className="mx-auto max-w-4xl px-4 md:px-6 py-20 md:py-24">
-          <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-3 text-center">CLI reference</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-3 text-center">How to get started</h2>
           <p className="text-text-secondary text-center mb-12 max-w-xl mx-auto">
-            Everything you need to integrate EnvX into your workflow.
+            You'll be up and running in 2 minutes.
           </p>
 
           {/* Install */}
@@ -175,13 +175,13 @@ export default function Landing() {
                 </thead>
                 <tbody className="divide-y divide-border-default">
                   {[
-                        ['envx login', 'Authenticate with your account'],
-                        ['envx logout', 'Clear stored credentials'],
-                        ['envx init', 'Link current directory to a project'],
-                        ['envx pull [env]', 'Fetch secrets and write .env file'],
-                        ['envx push [env]', 'Read .env file and upload secrets'],
-                        ['envx list projects', 'List all projects'],
-                        ['envx list environments', 'List environments for the current project'],
+                        ['envx login', 'Sign in with email and password'],
+                        ['envx logout', 'Disconnect from your account'],
+                        ['envx init', 'Link this folder to a project'],
+                        ['envx pull [env]', 'Download secrets to your .env file'],
+                        ['envx push [env]', 'Upload .env changes to the cloud'],
+                        ['envx list projects', 'See all your projects'],
+                        ['envx list environments', 'See all environments in a project'],
                       ].map(([cmd, desc]) => (
                         <tr key={cmd} className="hover:bg-canvas-subtle transition-colors">
                           <td className="px-4 py-2.5">
@@ -201,16 +201,16 @@ export default function Landing() {
             <div className="rounded-lg border border-border-default bg-canvas-inset p-5 overflow-x-auto">
               <pre className="text-sm text-text-primary leading-relaxed">
                 <code>{`# First-time setup
-envx login              # Sign in with email + password
-envx init               # Select a project to link
+envx login              # Log in with your email and password
+envx init               # Pick a project to connect
 
-# Daily usage
-envx pull staging       # Pull staging secrets → .env
-# ... edit .env locally
-envx push staging       # Push local changes
+# Daily workflow
+envx pull staging       # Download staging secrets to .env
+# ... edit your .env file
+envx push staging       # Upload your changes
 
 # Deploy
-envx pull production    # Fetch production secrets`}</code>
+envx pull production    # Get production secrets`}</code>
               </pre>
             </div>
           </div>
@@ -220,12 +220,12 @@ envx pull production    # Fetch production secrets`}</code>
       {/* CTA */}
       <section className="border-b border-border-default">
         <div className="mx-auto max-w-6xl px-4 md:px-6 py-20 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-4">Ready to get started?</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-4">Ready to try it?</h2>
           <p className="text-text-secondary mb-8 max-w-md mx-auto">
-            Stop sharing secrets over Slack. Start using EnvX.
+            Stop sending passwords over chat. Start using EnvX — it's free.
           </p>
           <Button variant="primary" size="lg" onClick={() => navigate('/register')}>
-            Create your account <ArrowRight size={18} />
+            Get started <ArrowRight size={18} />
           </Button>
         </div>
       </section>
@@ -233,7 +233,7 @@ envx pull production    # Fetch production secrets`}</code>
       {/* FOOTER */}
       <footer className="mx-auto max-w-6xl px-4 md:px-6 py-8">
         <div className="flex items-center justify-between text-sm text-text-tertiary">
-          <span>EnvX — Open source secret management</span>
+          <span>EnvX — Keep your secrets safe</span>
           <span>Built with Go + React</span>
         </div>
       </footer>
