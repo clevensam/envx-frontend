@@ -38,7 +38,7 @@ export default function ProjectDetail() {
   }, [id])
 
   useEffect(() => {
-    if (envList.length > 0 && !activeEnv) {
+    if (environments.length > 0 && !activeEnv) {
       setActiveEnv(environments[0])
     }
   }, [environments])
