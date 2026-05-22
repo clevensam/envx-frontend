@@ -59,6 +59,12 @@ export default function Landing() {
             <span className="text-lg font-semibold text-text-primary">EnvX</span>
           </div>
           <div className="flex items-center gap-3">
+            <button
+              onClick={() => document.getElementById('docs')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-sm text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
+            >
+              Docs
+            </button>
             {token ? (
               <Button variant="secondary" size="sm" onClick={() => navigate('/dashboard')}>
                 Dashboard

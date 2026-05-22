@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Key, Eye, EyeOff } from 'lucide-react'
+import { Key, Eye, EyeOff, ArrowLeft } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 import useStore from '@/store/useStore'
@@ -85,6 +85,12 @@ export default function Login() {
             Create an account
           </Link>
         </p>
+        <div className="mt-6 text-center">
+          <Link to="/" className="inline-flex items-center gap-1 text-sm text-text-tertiary hover:text-text-primary transition-colors">
+            <ArrowLeft size={14} />
+            Back to home
+          </Link>
+        </div>
       </div>
     </div>
   )
