@@ -32,7 +32,7 @@ export default function Dashboard() {
       setShowModal(false)
       setNewName('')
       setNewDesc('')
-      navigate(`/projects/${project.id}`)
+      navigate(`/dashboard/projects/${project.id}`)
     } finally {
       setCreating(false)
     }
@@ -72,7 +72,7 @@ export default function Dashboard() {
               key={project.id}
               hover
               className="p-4"
-              onClick={() => navigate(`/projects/${project.id}`)}
+              onClick={() => navigate(`/dashboard/projects/${project.id}`)}
             >
               <div className="flex items-start gap-3">
                 <div className="rounded-md border border-border-default bg-canvas-subtle p-2">
