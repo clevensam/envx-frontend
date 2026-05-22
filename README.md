@@ -1,16 +1,49 @@
-# React + Vite
+# EnvX Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React dashboard for managing secrets and environment variables, inspired by GitHub's UI.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 19** + **Vite 8** — Frontend framework
+- **Tailwind CSS 4** — Styling with GitHub-inspired design tokens
+- **Zustand** — State management
+- **Axios** — HTTP client with JWT interceptors
+- **React Router** — Client-side routing
+- **Lucide React** — Icons
 
-## React Compiler
+## GitHub-Inspired UI
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Every page maps to a familiar GitHub pattern:
 
-## Expanding the ESLint configuration
+- **Dashboard** → GitHub "Your repositories"
+- **Project detail** → GitHub repo page with UnderlineNav tabs
+- **Secrets** → GitHub "Settings → Secrets and variables"
+- **Team** → GitHub "Settings → Manage access"
+- **Audit** → GitHub "Security → Audit log"
+- **Auth** → GitHub login/register (centered card)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Pages
+
+| Route | Page |
+|---|---|
+| `/login` | Login |
+| `/register` | Register |
+| `/` | Dashboard — project cards |
+| `/projects/:id` | Project detail with tabs |
+| `/projects/:id/env/:envId` | Secret management table |
+
+## Local Development
+
+```bash
+cp .env.example .env
+# Edit VITE_API_URL to point to your backend
+npm install
+npm run dev
+```
+
+## Deploy to Vercel
+
+1. Import repo to Vercel
+2. Set environment variable: `VITE_API_URL=https://your-backend.onrender.com`
+3. Vercel auto-detects Vite and builds automatically
+4. `vercel.json` handles SPA routing for all paths
