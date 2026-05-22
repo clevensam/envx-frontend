@@ -29,7 +29,11 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-canvas px-4">
+    <div className="relative flex min-h-screen items-center justify-center bg-canvas px-4">
+      <Link to="/" className="absolute top-4 left-4 md:top-6 md:left-6 inline-flex items-center gap-1 text-sm text-text-tertiary hover:text-text-primary transition-colors">
+        <ArrowLeft size={14} />
+        Back to home
+      </Link>
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent/10 mb-4">
@@ -85,12 +89,6 @@ export default function Login() {
             Create an account
           </Link>
         </p>
-        <div className="mt-6 text-center">
-          <Link to="/" className="inline-flex items-center gap-1 text-sm text-text-tertiary hover:text-text-primary transition-colors">
-            <ArrowLeft size={14} />
-            Back to home
-          </Link>
-        </div>
       </div>
     </div>
   )
