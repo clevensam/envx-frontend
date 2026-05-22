@@ -13,9 +13,11 @@ import { useToast } from '@/components/ui/Toast'
 import useStore from '@/store/useStore'
 
 export default function TeamManagement({ projectId }) {
-  const { members, fetchMembers, addMember, removeMember } = useStore()
+  const { user, members, fetchMembers, addMember, removeMember } = useStore()
   const { addToast } = useToast()
   const [loading, setLoading] = useState(true)
+  const currentMember = members.find(m => m.user_id === user?.id)
+  const isAdmin = currentMember?.role === 'admin'
   const [showModal, setShowModal] = useState(false)
   const [email, setEmail] = useState('')
   const [role, setRole] = useState('member')
@@ -80,7 +82,7 @@ export default function TeamManagement({ projectId }) {
       label: '',
       width: '80px',
       render: (row) =>
-        row.role === 'admin' ? (
+        isAdmin && row.user_id !== user?.id ? (
           <button
             onClick={() => handleRemove(row)}
             className="p-1 text-text-tertiary hover:text-danger cursor-pointer"
@@ -96,9 +98,11 @@ export default function TeamManagement({ projectId }) {
     <div>
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-sm font-medium text-text-primary">Team members</h2>
-        <Button variant="primary" size="sm" onClick={() => setShowModal(true)}>
-          <Plus size={14} /> Invite member
-        </Button>
+        {isAdmin && (
+          <Button variant="primary" size="sm" onClick={() => setShowModal(true)}>
+            <Plus size={14} /> Invite member
+          </Button>
+        )}
       </div>
 
       <Table
