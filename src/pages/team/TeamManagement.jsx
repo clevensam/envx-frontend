@@ -80,7 +80,7 @@ export default function TeamManagement({ projectId }) {
       label: '',
       width: '80px',
       render: (row) =>
-        row.role !== 'owner' ? (
+        row.role === 'admin' ? (
           <button
             onClick={() => handleRemove(row)}
             className="p-1 text-text-tertiary hover:text-danger cursor-pointer"
