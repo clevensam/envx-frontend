@@ -1,9 +1,8 @@
 import { NavLink } from 'react-router-dom'
-import { LayoutDashboard, FolderGit2, Key, Users, History, Settings } from 'lucide-react'
+import { FolderGit2, Key } from 'lucide-react'
 
 const navItems = [
-  { to: '/', label: 'Dashboard', icon: LayoutDashboard },
-  { to: '/projects', label: 'Projects', icon: FolderGit2 },
+  { to: '/', label: 'Projects', icon: FolderGit2 },
 ]
 
 export default function Sidebar() {

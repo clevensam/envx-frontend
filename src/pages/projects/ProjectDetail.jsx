@@ -38,7 +38,7 @@ export default function ProjectDetail() {
   }, [id])
 
   useEffect(() => {
-    if (environments.length > 0 && !activeEnv) {
+    if (envList.length > 0 && !activeEnv) {
       setActiveEnv(environments[0])
     }
   }, [environments])
@@ -60,9 +60,10 @@ export default function ProjectDetail() {
   if (loading) return <PageSpinner />
   if (!currentProject) return <p className="text-text-secondary">Project not found</p>
 
+  const envList = Array.isArray(environments) ? environments : []
   const tabItems = [
-    { key: 'secrets', label: 'Secrets', count: environments.reduce((s, e) => s + (e.secret_count || 0), 0) },
-    { key: 'environments', label: 'Environments', count: environments.length },
+    { key: 'secrets', label: 'Secrets', count: envList.reduce((s, e) => s + (e.secret_count || 0), 0) },
+    { key: 'environments', label: 'Environments', count: envList.length },
     { key: 'team', label: 'Team' },
     { key: 'audit', label: 'Audit log' },
   ]
@@ -88,7 +89,7 @@ export default function ProjectDetail() {
       <div className="mt-6">
         {activeTab === 'secrets' && (
           <div>
-            {environments.length === 0 ? (
+            {envList.length === 0 ? (
               <EmptyState
                 icon={null}
                 title="No environments"
@@ -102,7 +103,7 @@ export default function ProjectDetail() {
             ) : (
               <>
                 <div className="flex items-center gap-2 mb-4">
-                  {environments.map((env) => (
+                  {envList.map((env) => (
                     <button
                       key={env.id}
                       onClick={() => setActiveEnv(env)}
@@ -130,11 +131,11 @@ export default function ProjectDetail() {
                 <Plus size={14} /> New environment
               </Button>
             </div>
-            {environments.length === 0 ? (
+            {envList.length === 0 ? (
               <EmptyState icon={null} title="No environments" description="Add development, staging, or production environments." />
             ) : (
               <div className="grid gap-3">
-                {environments.map((env) => (
+                {envList.map((env) => (
                   <Card key={env.id} className="p-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <Badge variant={env.name}>{env.name}</Badge>
