@@ -102,21 +102,21 @@ export default function ProjectDetail() {
               />
             ) : (
               <>
-                <div className="flex items-center gap-2 mb-4">
-                  {envList.map((env) => (
-                    <button
-                      key={env.id}
-                      onClick={() => setActiveEnv(env)}
-                      className={`px-3 py-1.5 text-sm rounded-md border cursor-pointer transition-colors ${
-                        activeEnv?.id === env.id
-                          ? 'bg-canvas-subtle border-link text-link'
-                          : 'border-border-default text-text-secondary hover:text-text-primary hover:bg-canvas-subtle'
-                      }`}
-                    >
-                      <Badge variant={env.name}>{env.name}</Badge>
-                    </button>
-                  ))}
-                </div>
+                 <div className="flex items-center gap-2 mb-4 overflow-x-auto pb-1">
+                   {envList.map((env) => (
+                     <button
+                       key={env.id}
+                       onClick={() => setActiveEnv(env)}
+                       className={`px-3 py-1.5 text-sm rounded-md border cursor-pointer transition-colors whitespace-nowrap shrink-0 ${
+                         activeEnv?.id === env.id
+                           ? 'bg-canvas-subtle border-link text-link'
+                           : 'border-border-default text-text-secondary hover:text-text-primary hover:bg-canvas-subtle'
+                       }`}
+                     >
+                       <Badge variant={env.name}>{env.name}</Badge>
+                     </button>
+                   ))}
+                 </div>
                 {activeEnv && <SecretManager environmentId={activeEnv.id} />}
               </>
             )}

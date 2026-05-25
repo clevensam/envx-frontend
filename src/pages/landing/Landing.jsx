@@ -4,6 +4,7 @@ import {
   Key, Terminal, Shield, Users, Eye, ArrowRight,
   ChevronDown, Copy, Check, GitBranch, Star,
   Lock, Clock, Download, RefreshCw, Server,
+  Menu, X,
 } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import ThemeToggle from '@/components/ui/ThemeToggle'
@@ -164,6 +165,7 @@ export default function Landing() {
   const navigate = useNavigate()
   const token = localStorage.getItem('envx_token')
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -208,24 +210,81 @@ export default function Landing() {
                 <span>GitHub</span>
               </a>
             </nav>
-            <div className="flex items-center gap-3">
-              <ThemeToggle />
-            {token ? (
-              <Button variant="secondary" size="sm" onClick={() => navigate('/dashboard')}>
-                Dashboard
-              </Button>
-            ) : (
-              <>
-                <Link to="/login" className="text-sm text-text-secondary hover:text-text-primary transition-colors">
-                  Sign in
-                </Link>
-                <Button variant="primary" size="sm" onClick={() => navigate('/register')}>
-                  Get started
-                </Button>
-              </>
-            )}
-          </div>
+           <div className="flex items-center gap-1.5 md:gap-2">
+               <ThemeToggle />
+
+               {/* Mobile menu button */}
+               <button
+                 onClick={() => setMenuOpen(!menuOpen)}
+                 className="md:hidden flex h-8 w-8 items-center justify-center rounded-md text-text-tertiary hover:text-text-primary hover:bg-canvas-subtle transition-colors cursor-pointer"
+                 aria-label="Toggle menu"
+               >
+                 {menuOpen ? <X size={18} /> : <Menu size={18} />}
+               </button>
+
+             <div className="hidden md:flex items-center gap-2">
+               {token ? (
+                 <Button variant="secondary" size="sm" onClick={() => navigate('/dashboard')}>
+                   Dashboard
+                 </Button>
+               ) : (
+                 <>
+                   <Link to="/login" className="text-sm text-text-secondary hover:text-text-primary transition-colors">
+                     Sign in
+                   </Link>
+                   <Button variant="primary" size="sm" onClick={() => navigate('/register')}>
+                     Get started
+                   </Button>
+                 </>
+               )}
+             </div>
+           </div>
         </div>
+
+         {/* Mobile menu */}
+         {menuOpen && (
+           <div className="md:hidden border-b border-border-default bg-canvas/95 backdrop-blur-md">
+             <div className="px-4 py-4 space-y-1">
+               <button
+                 onClick={() => { document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' }); setMenuOpen(false) }}
+                 className="block w-full text-left text-sm text-text-secondary hover:text-text-primary transition-colors py-2"
+               >
+                 How it works
+               </button>
+               <button
+                 onClick={() => { document.getElementById('docs')?.scrollIntoView({ behavior: 'smooth' }); setMenuOpen(false) }}
+                 className="block w-full text-left text-sm text-text-secondary hover:text-text-primary transition-colors py-2"
+               >
+                 CLI Reference
+               </button>
+               <a
+                 href="https://github.com/clevensam/envx-cli"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors py-2"
+                 onClick={() => setMenuOpen(false)}
+               >
+                 <GitBranch size={16} /> GitHub
+               </a>
+               <div className="pt-3 mt-2 border-t border-border-default flex flex-col gap-2">
+                 {token ? (
+                   <Button variant="primary" size="sm" onClick={() => { navigate('/dashboard'); setMenuOpen(false) }} className="w-full">
+                     Dashboard
+                   </Button>
+                 ) : (
+                   <>
+                     <Button variant="secondary" size="sm" onClick={() => { navigate('/login'); setMenuOpen(false) }} className="w-full">
+                       Sign in
+                     </Button>
+                     <Button variant="primary" size="sm" onClick={() => { navigate('/register'); setMenuOpen(false) }} className="w-full">
+                       Get started
+                     </Button>
+                   </>
+                 )}
+               </div>
+             </div>
+           </div>
+         )}
       </header>
 
       {/* ═══ HERO ═══ */}
@@ -248,15 +307,15 @@ export default function Landing() {
                   <code className="text-link">envx pull</code> gives your whole team the same values — every time.
                 </span>
               </p>
-              <div className="mt-8 flex items-center gap-4">
-                <Button variant="primary" size="lg" onClick={() => navigate('/register')}>
+              <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+                <Button variant="primary" size="lg" onClick={() => navigate('/register')} className="w-full sm:w-auto">
                   Get started free <ArrowRight size={18} />
                 </Button>
-                <Button variant="secondary" size="lg" onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}>
+                <Button variant="secondary" size="lg" onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} className="w-full sm:w-auto">
                   See how it works
                 </Button>
               </div>
-              <div className="mt-8 flex items-center gap-6 text-sm text-text-tertiary">
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-text-tertiary">
                 <span className="flex items-center gap-1.5">
                   <Check size={14} className="text-accent" /> No credit card
                 </span>
