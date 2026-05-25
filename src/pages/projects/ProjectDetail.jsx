@@ -72,7 +72,7 @@ export default function ProjectDetail() {
     <div>
       <Breadcrumb
         items={[
-          { label: 'Projects', href: '/' },
+          { label: 'Projects', href: '/dashboard' },
           { label: currentProject.name },
         ]}
       />

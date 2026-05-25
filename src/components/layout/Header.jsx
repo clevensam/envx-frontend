@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Search, LogOut, User } from 'lucide-react'
 import Avatar from '@/components/ui/Avatar'
+import ThemeToggle from '@/components/ui/ThemeToggle'
 import useStore from '@/store/useStore'
 
 export default function Header() {
@@ -32,6 +33,8 @@ export default function Header() {
       </div>
 
       <div className="flex-1" />
+
+      <ThemeToggle />
 
       <div className="relative hidden sm:flex items-center">
         <Search size={16} className="absolute left-3 text-text-tertiary" />

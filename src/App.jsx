@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Login from '@/pages/auth/Login'
 import Register from '@/pages/auth/Register'
@@ -18,7 +19,20 @@ function GuestRoute({ children }) {
   return children
 }
 
+function applyStoredTheme() {
+  const theme = localStorage.getItem('envx_theme') || 'light'
+  if (theme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark')
+  } else {
+    document.documentElement.removeAttribute('data-theme')
+  }
+}
+
 export default function App() {
+  useEffect(() => {
+    applyStoredTheme()
+  }, [])
+
   return (
     <Routes>
       <Route path="/" element={<Landing />} />

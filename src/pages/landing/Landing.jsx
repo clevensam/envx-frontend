@@ -6,6 +6,7 @@ import {
   Lock, Clock, Download, RefreshCw, Server,
 } from 'lucide-react'
 import Button from '@/components/ui/Button'
+import ThemeToggle from '@/components/ui/ThemeToggle'
 
 const painSolutionCards = [
   {
@@ -197,17 +198,18 @@ export default function Landing() {
             >
               CLI Reference
             </button>
-            <a
-              href="https://github.com/clevensam/envx-cli"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors"
-            >
-              <GitBranch size={16} />
-              <span>GitHub</span>
-            </a>
-          </nav>
-          <div className="flex items-center gap-3">
+              <a
+                href="https://github.com/clevensam/envx-cli"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors"
+              >
+                <GitBranch size={16} />
+                <span>GitHub</span>
+              </a>
+            </nav>
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
             {token ? (
               <Button variant="secondary" size="sm" onClick={() => navigate('/dashboard')}>
                 Dashboard
